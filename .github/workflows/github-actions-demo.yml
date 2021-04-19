@@ -20,4 +20,4 @@ jobs:
     - run: |
         python -c "import sys; print(sys.version)"
         pip install playwright
-        python test.py "secrets.COOKIES" "secrets.TEST" "secrets.UNIVERSITY"
+        python test.py "$COOKIES" "$TEST" "$UNIVERSITY"
