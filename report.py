@@ -52,7 +52,7 @@ async def main():
         else:
             message = f"打卡失败 / 未到打卡时间\n返回值: {text}"
         requests.get("https://api.telegram.org/bot" + ENV["BOTID"] + "/sendMessage?chat_id=" +
-                     ENV["CHATID"] + "&parse_mode=Markdown&text=" + message, proxies=proxies)
+                     ENV["CHATID"] + "&parse_mode=Markdown&text=" + message)
 
 if __name__ == "__main__":
     try:
@@ -60,4 +60,4 @@ if __name__ == "__main__":
     except Exception as e:
         message = f"打卡失败 程序报错\n```\n{e}\n```"
     requests.get("https://api.telegram.org/bot" + ENV["BOTID"] + "/sendMessage?chat_id=" +
-                 ENV["CHATID"] + "&parse_mode=Markdown&text=" + message, proxies=proxies)
+                 ENV["CHATID"] + "&parse_mode=Markdown&text=" + message)
