@@ -1,16 +1,19 @@
 name: Greeting from Github Actions Python
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 */12 * * *'
 
 jobs:
   my_job:
     name: Install Python
     runs-on: ubuntu-latest
     env:
-      COOKIES: ${{ secrets.COOKIES }}
-      TEST: ${{ secrets.TEST }}
-      UNIVERSITY: ${{ secrets.UNIVERSITY }}
+      BOTID: ${{ secrets.BOTID }}
+      CHATID: ${{ secrets.CHATID }}
+      SAAS_S_ID: ${{ secrets.SAAS_S_ID }}
+      SAAS_U: ${{ secrets.SAAS_U }}
+      iPlanetDirectoryPro: ${{ secrets.iPlanetDirectoryPro }}
+      JSESSIONID: ${{ secrets.JSESSIONID }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
@@ -19,5 +22,5 @@ jobs:
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: |
         python -c "import sys; print(sys.version)"
-        pip install asyncio playwright
-        python test.py "$COOKIES" "$TEST" "$UNIVERSITY"
+        pip install asyncio playwright requests
+        python report.py "$BOTID" "$CHATID" "$SAAS_S_ID" "$SAAS_U" "$iPlanetDirectoryPro" "$JSESSIONID"
