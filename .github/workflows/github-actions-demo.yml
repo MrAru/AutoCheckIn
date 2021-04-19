@@ -8,6 +8,10 @@ jobs:
     name: Install Python
     runs-on: ubuntu-latest
     steps:
+    - env:
+      COOKIES: ${{ secrets.COOKIES }}
+      TEST: ${{ secrets.TEST }}
+      UNIVERSITY: ${{ secrets.UNIVERSITY }}
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
@@ -16,3 +20,4 @@ jobs:
     - run: |
         python -c "import sys; print(sys.version)"
         pip install playwright
+        python test.py "secrets.COOKIES" "secrets.TEST" "secrets.UNIVERSITY"
