@@ -1,7 +1,7 @@
 name: Greeting from Github Actions Python
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '*/10 * * * *'
 
 jobs:
   my_job:
@@ -23,4 +23,5 @@ jobs:
     - run: |
         python -c "import sys; print(sys.version)"
         pip install asyncio playwright requests
+        python -m playwright install
         python report.py "$BOTID" "$CHATID" "$SAAS_S_ID" "$SAAS_U" "$iPlanetDirectoryPro" "$JSESSIONID"
