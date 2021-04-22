@@ -1,11 +1,11 @@
-name: Greeting from Github Actions Python
+name: Daily Checkin
 on:
   schedule:
     - cron: '*/10 * * * *'
 
 jobs:
   my_job:
-    name: Install Python
+    name: Checkin
     runs-on: ubuntu-latest
     env:
       BOTID: ${{ secrets.BOTID }}
