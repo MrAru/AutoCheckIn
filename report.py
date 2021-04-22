@@ -43,12 +43,14 @@ async def main():
         await page.click('//html/body/div[8]/ul/div')
         page.on("dialog", lambda dialog: dialog.accept())
         await page.click('[class="form-save position-absolute"]')
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
         await page.reload()
-        text = page.query_selector(
-            "/html/body/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div[3]/div/div[30]/div/div/div/span[1]").inner_text()
-        if text == "是":
-            message = f"打卡成功\n返回值: {text}"
+        await page.click('[title="我的表单"]')
+        await asyncio.sleep(1)
+        html = await page.query_selector('[title="是 Yes"]')
+        text = await html.inner_text()
+        if text == "是 Yes":
+            message = f"打卡成功 / 今日已打卡\n返回值: {text}"
         else:
             message = f"打卡失败 / 未到打卡时间\n返回值: {text}"
         requests.get("https://api.telegram.org/bot" + ENV["BOTID"] + "/sendMessage?chat_id=" +
