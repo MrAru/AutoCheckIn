@@ -1,7 +1,7 @@
 name: Daily Checkin
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '30 8,12,16 * * *'
 
 jobs:
   my_job:
