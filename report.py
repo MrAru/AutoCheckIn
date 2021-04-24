@@ -53,6 +53,7 @@ async def main():
             message = f"打卡成功 / 今日已打卡\n返回值: {text}"
         else:
             message = f"打卡失败 / 未到打卡时间\n返回值: {text}"
+        print(message)
         requests.get(f"https://api.telegram.org/bot{ENV['BOTID']}/sendMessage?chat_id={ENV['CHATID']}&parse_mode=Markdown&text={message}")
 
 
@@ -61,4 +62,5 @@ if __name__ == "__main__":
         asyncio.run(main())
     except Exception as e:
         message = f"打卡失败 程序报错\n```\n{e}\n```"
+        print(message)
         requests.get(f"https://api.telegram.org/bot{ENV['BOTID']}/sendMessage?chat_id={ENV['CHATID']}&parse_mode=Markdown&text={message}")
