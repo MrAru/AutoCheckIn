@@ -38,7 +38,7 @@ async def main():
         await context.add_cookies(cookies)
         page = await context.new_page()
         await page.goto("http://xmuxg.xmu.edu.cn/xmu/app/214")
-        await page.click('//*[@id="mainM"]/div/div/div/div[1]/div[2]/div/div[3]/div[2]')
+        await page.click('[title="我的表单"]')
         await page.click('//*[@id="select_1582538939790"]/div/div')
         await page.click('//html/body/div[8]/ul/div')
         page.on("dialog", lambda dialog: dialog.accept())
