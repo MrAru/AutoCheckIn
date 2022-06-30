@@ -46,6 +46,7 @@ async def main(headless=True):
         requests.get(
             f"https://api.telegram.org/bot{ENV['BOTID']}/sendMessage?chat_id={ENV['CHATID']}&parse_mode=Markdown&text={message}"
         )
+        print(message)
         return res
 
 
