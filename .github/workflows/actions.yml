@@ -1,7 +1,7 @@
 name: Daily Checkin
 on:
   schedule:
-    - cron: '30 7-8,12-13 * * *'
+    - cron: '30 10 * * *'
 
 jobs:
   my_job:
@@ -10,18 +10,15 @@ jobs:
     env:
       BOTID: ${{ secrets.BOTID }}
       CHATID: ${{ secrets.CHATID }}
-      SAAS_S_ID: ${{ secrets.SAAS_S_ID }}
-      SAAS_U: ${{ secrets.SAAS_U }}
-      iPlanetDirectoryPro: ${{ secrets.iPlanetDirectoryPro }}
-      JSESSIONID: ${{ secrets.JSESSIONID }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWD: ${{ secrets.PASSWD }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
-        python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: |
-        python -c "import sys; print(sys.version)"
         pip install asyncio playwright requests
-        python -m playwright install
-        python report.py "$BOTID" "$CHATID" "$SAAS_S_ID" "$SAAS_U" "$iPlanetDirectoryPro" "$JSESSIONID"
+        python -m playwright install firefox
+        python report.py "$BOTID" "$CHATID" "$USERNAME" "$PASSWD"
